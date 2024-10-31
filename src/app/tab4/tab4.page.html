@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Otros Tutoriales</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">tab4</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card *ngFor="let video of videos" href="https://www.youtube.com/watch?v={{ video.id.videoId }}">
+    <ion-card-content class="ion-text-center">
+      <ion-img width="90%" src="{{video.snippet.thumbnails.default.url}}"/>
+    </ion-card-content>
+    <ion-card-header>
+      <ion-card-title>{{ video.snippet.title }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{ video.snippet.channelTitle }}
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
