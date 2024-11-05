@@ -14,7 +14,10 @@
   </ion-header>
 
   <ion-list>
+    <ion-item>
+      <ion-input [(ngModel)]="fileName"  label="Nombre de la cancion" label-placement="floating" fill="solid" placeholder="Enter text"></ion-input>
 
+    </ion-item>
     <ion-item>
       <ion-input type="file" (change)="onFileSelected($event)" accept=".txt"></ion-input>
     </ion-item>
@@ -23,13 +26,5 @@
   <ion-button (click)="onUploadFile()">
     Subir cancion
   </ion-button>
-    
-  <ion-alert
-  trigger="present-alert"
-  header="A Short Title Is Best"
-  subHeader="A Sub Header Is Optional"
-  message="A message should be a short, complete sentence."
-  *ngIf="uploadFile"
-></ion-alert>
 
 </ion-content>

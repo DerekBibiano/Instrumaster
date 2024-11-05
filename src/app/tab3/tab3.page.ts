@@ -1,4 +1,4 @@
-import { Component}  from '@angular/core';
+import { Component } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -12,7 +12,8 @@ import { Observable } from 'rxjs';
 export class Tab3Page {
   uploadProgress$!: Observable<number>;
   downloadURL$!: Observable<string>;
-  selectedFile!: File | null; // Variable to store the selected file
+  selectedFile!: File | null;
+  fileName: string = ''; // Propiedad para almacenar el nombre del archivo
 
   constructor(private storage: AngularFireStorage) {}
 
@@ -20,28 +21,30 @@ export class Tab3Page {
     this.selectedFile = event.target.files[0];
   }
 
-  onUploadFile(){
+  onUploadFile() {
     if (this.selectedFile) {
-      this.uploadFile(this.selectedFile);
+      if (this.fileName.trim()) {
+        this.uploadFile(this.selectedFile, this.fileName);
+      } else {
+        console.log('Please enter a file name');
+      }
     } else {
       console.log('No file selected');
     }
   }
 
-  uploadFile(file: File) {
-    const filePath = `canciones/${file.name}`;
+  uploadFile(file: File, name: string) {
+    const filePath = `canciones/${name}`; // Usar el nombre ingresado para la ruta del archivo
     const fileRef = this.storage.ref(filePath);
     const uploadTask = this.storage.upload(filePath, file);
 
-    // Get the download URL once the upload is complete
+    // Obtener la URL de descarga una vez que se complete la carga
     uploadTask.snapshotChanges().pipe(
       finalize(() => {
         fileRef.getDownloadURL().subscribe(url => {
-          console.log('File URL:', url);
-          this.downloadURL$ = url; // store the download URL
+          this.downloadURL$ = url; // almacenar la URL de descarga
         });
       })
     ).subscribe();
   }
-
 }
