@@ -10,18 +10,20 @@ export class FileService {
   constructor(private storage: AngularFireStorage) {}
 
   // Método para obtener la lista de archivos
-  getFiles(): Observable<{ name: string, url: string }[]> {
-    const filesRef = this.storage.ref('canciones');
-    return filesRef.listAll().pipe(
-      mergeMap(result => from(result.items)),
-      mergeMap(item =>
-        from(item.getDownloadURL()).pipe(
-          map(url => ({ name: item.name, url }))
-        )
-      ),
-      toArray()
-    );
-  }
+  // Servicio
+getFiles(page: number = 0, pageSize: number = 10): Observable<{ name: string, url: string }[]> {
+  const filesRef = this.storage.ref('canciones');
+  return filesRef.listAll().pipe(
+    mergeMap(result => from(result.items.slice(page * pageSize, (page + 1) * pageSize))),
+    mergeMap(item =>
+      from(item.getDownloadURL()).pipe(
+        map(url => ({ name: item.name, url }))
+      )
+    ),
+    toArray()
+  );
+}
+
 
   // Método para obtener el contenido de un archivo
   getFileContent(url: string): Observable<string> {

@@ -1,0 +1,45 @@
+ion-content {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;     /* Centra verticalmente */
+    height: 100vh;           /* Asegura que ocupe toda la altura de la ventana */
+}
+
+ion-card {
+    position: relative;
+    width: 80%;
+    height: 70%;
+    margin: auto;
+    padding-bottom: 60px;
+}
+
+ion-card-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el contenido del formulario horizontalmente */
+    justify-content: center; /* Centra el contenido verticalmente */
+    height: 100%;
+    padding-bottom: 80px; /* Deja espacio para los botones */
+}  
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .footer{
+    position: absolute;
+    bottom: 50px; /* Espacio desde el fondo */
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+  }

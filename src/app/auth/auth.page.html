@@ -1,56 +1,64 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Instrumaster</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content fullscreen scroll-y="false">
+  <ion-grid class="center-content">
+    <ion-card>
+      <ion-card-header>
 
-<ion-content>
-  <!-- Toggle para cambiar entre Login y Register -->
-  <ion-segment [(ngModel)]="authMode">
-    <ion-segment-button value="login">
-      <ion-label>Login</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="register">
-      <ion-label>Registro</ion-label>
-    </ion-segment-button>
-  </ion-segment>
+        <!-- Toggle para cambiar entre Login y Register -->
+        <ion-segment [(ngModel)]="authMode">
+          <ion-segment-button value="login">
+            <ion-card-subtitle>Login</ion-card-subtitle>
+          </ion-segment-button>
+          <ion-segment-button value="register">
+            <ion-card-subtitle>Registro</ion-card-subtitle>
+          </ion-segment-button>
+        </ion-segment>
+        
+      </ion-card-header>
 
-  <!-- Formulario de Login -->
-  <form *ngIf="authMode === 'login'" (submit)="login()">
-    <ion-list>
-      <ion-item>
-        <ion-label position="floating">Email</ion-label>
-        <ion-input [(ngModel)]="email" type="email" name="email" required></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Contraseña</ion-label>
-        <ion-input [(ngModel)]="password" type="password" name="password" required></ion-input>
-      </ion-item>
-    </ion-list>
-    <ion-button type="submit">Ingresar con correo</ion-button>
-  </form>
+        <ion-card-content>
 
-  <!-- Formulario de Registro -->
-  <form *ngIf="authMode === 'register'" (submit)="register()">
-    <ion-list>
-      <ion-item>
-        <ion-label position="floating">Email</ion-label>
-        <ion-input [(ngModel)]="email" type="email" name="email" required></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Crear nueva contraseña</ion-label>
-        <ion-input [(ngModel)]="password" type="password" name="password" required></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Confirmar contraseña</ion-label>
-        <ion-input [(ngModel)]="passwordConfirm" type="password" name="password" required></ion-input>
-      </ion-item>
-    </ion-list>
-    <ion-button type="submit">Registrarse con correo</ion-button>
-  </form>
+          <!-- Formulario de Login -->
+          <form *ngIf="authMode === 'login'" (submit)="login()">
+            <ion-list>
+              <ion-item>
+                <ion-label position="floating">Email</ion-label>
+                <ion-input [(ngModel)]="email" color="primary" type="email" name="email" required></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Contraseña</ion-label>
+                <ion-input [(ngModel)]="password" color="primary" type="password" name="password" required></ion-input>
+              </ion-item>
+            </ion-list>
+            <div class="footer">
+              <ion-button type="submit">Ingresar con correo</ion-button>
+            </div>
+          </form>
 
-  <!-- Mensaje de error -->
-  <ion-text color="danger" *ngIf="errorMessage">
-    <p>{{ errorMessage }}</p>
-  </ion-text>
+            <!-- Formulario de Registro -->
+          <form *ngIf="authMode === 'register'" (submit)="register()">
+            <ion-list>
+              <ion-item>
+                <ion-label position="floating">Email</ion-label>
+                <ion-input [(ngModel)]="email" color="primary" type="email" name="email" required></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Crear nueva contraseña</ion-label>
+                <ion-input [(ngModel)]="password" color="primary" type="password" name="password" required></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Confirmar contraseña</ion-label>
+                <ion-input [(ngModel)]="passwordConfirm" color="primary" type="password" name="password" required></ion-input>
+              </ion-item>
+            </ion-list>
+            <div class="footer">
+              <ion-button type="submit">Registrarse con correo</ion-button>
+            </div>
+          </form>
+
+        </ion-card-content>
+
+    </ion-card>
+  </ion-grid>
+    
+
 </ion-content>

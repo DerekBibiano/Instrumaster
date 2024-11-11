@@ -11,6 +11,7 @@
 
 /* Core CSS required for Ionic components to work properly */
 @import "@ionic/angular/css/core.css";
+@import 'sweetalert2/src/sweetalert2.scss';
 
 /* Basic CSS for apps built with Ionic */
 @import "@ionic/angular/css/normalize.css";
@@ -35,3 +36,16 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+ion-content {
+    position: static !important;
+  }
+
+  .swal2-container {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    height: 100vh !important;
+    width: 100vw !important;
+    z-index: 9999 !important; /* Asegura que esté en el nivel más alto */
+  }

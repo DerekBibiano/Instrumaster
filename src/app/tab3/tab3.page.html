@@ -1,3 +1,4 @@
+
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
@@ -6,25 +7,24 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" scroll-y="false">
+  <ion-card>
+    <ion-card-content>
 
-  <ion-list>
-    <ion-item>
-      <ion-input [(ngModel)]="fileName"  label="Nombre de la cancion" label-placement="floating" fill="solid" placeholder="Enter text"></ion-input>
+      <ion-input [(ngModel)]="fileName" color="primary" label="Nombre de la canción" label-placement="floating" fill="solid"></ion-input>
 
-    </ion-item>
-    <ion-item>
-      <ion-input type="file" (change)="onFileSelected($event)" accept=".txt"></ion-input>
-    </ion-item>
-  </ion-list>
+      <ion-item lines="none">
+        <!-- Condicional para mostrar "SELECCIONA UN ARCHIVO" hasta que se elija uno -->
+        <ion-text color="medium">
+          {{ selectedFileName || 'Selecciona un archivo' }}
+        </ion-text>
+        <ion-label class="file-upload-label" (click)="fileInput.click()">
+          <ion-icon name="folder"></ion-icon>
+        </ion-label>
+        <input type="file" (change)="onFileSelected($event)" accept=".txt" #fileInput hidden />
+      </ion-item>
 
-  <ion-button (click)="onUploadFile()">
-    Subir cancion
-  </ion-button>
-
+      <ion-button (click)="onUploadFile()">Subir cancion</ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
