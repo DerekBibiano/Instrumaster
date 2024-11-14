@@ -8,9 +8,7 @@
       "resources": {
         "files": [
           "/favicon.ico",
-          "/index.csr.html",
           "/index.html",
-          "/manifest.webmanifest",
           "/*.css",
           "/*.js"
         ]
@@ -22,22 +20,10 @@
       "updateMode": "prefetch",
       "resources": {
         "files": [
-          "/**/*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif|otf|ttf|woff|woff2)"
+          "/assets/**",
+          "/*.png",
+          "/*.svg"
         ]
-      }
-    }
-  ],
-  "dataGroups": [
-    {
-      "name": "song-files",
-      "urls": [
-        "/canciones/**" 
-      ],
-      "cacheConfig": {
-        "strategy": "performance",
-        "maxSize": 50,
-        "maxAge": "30d",
-        "timeout": "10s"
       }
     }
   ]

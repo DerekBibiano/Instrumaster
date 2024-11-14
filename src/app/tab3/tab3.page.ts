@@ -30,16 +30,6 @@ export class Tab3Page {
     if (this.selectedFile) {
       if (this.fileName.trim()) {
         this.uploadFile(this.selectedFile, this.fileName);
-        Swal.fire({
-          title: "Canción Agregada",
-          text: "Gracias por tu aporte, se ha subido correctamente.",
-          icon: "success",
-          confirmButtonText: 'Aceptar'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            location.reload(); // Recarga la página cuando el usuario hace clic en "Aceptar"
-          }
-        });
       } else {
         console.log('Please enter a file name');
       }
