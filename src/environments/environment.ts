@@ -11,7 +11,7 @@ export const environment = {
     storageBucket: "instrumaster-2c4e6.appspot.com",
     messagingSenderId: "911820236695",
     appId: "1:911820236695:web:7bc98b50863e38ef3486d2",
-    measurementId: "G-CR26DELB1Y"
+    measurementId: "G-XXXXXXX"
   }
 };
 

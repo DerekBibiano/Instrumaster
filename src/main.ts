@@ -1,23 +1,26 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
-import { getMessaging, getToken } from "firebase/messaging"; // Asegúrate de tener Firebase configurado
-import { initializeApp } from "firebase/app";
-
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.log(err));
+import { getMessaging, getToken } from 'firebase/messaging';
+import { initializeApp } from 'firebase/app';
+import { getFirestore, doc, setDoc } from "firebase/firestore";
 
 // Inicializa Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyBWsVqfO9xSTog_eiBhJthA2A5HL3mpuYk",
-    authDomain: "instrumaster-2c4e6.firebaseapp.com",
-    projectId: "instrumaster-2c4e6",
-    storageBucket: "instrumaster-2c4e6.appspot.com",
-    messagingSenderId: "911820236695",
-    appId: "1:911820236695:web:7bc98b50863e38ef3486d2",
-    measurementId: "G-CR26DELB1Y"
+  authDomain: "instrumaster-2c4e6.firebaseapp.com",
+  projectId: "instrumaster-2c4e6",
+  storageBucket: "instrumaster-2c4e6.appspot.com",
+  messagingSenderId: "911820236695",
+  appId: "1:911820236695:web:7bc98b50863e38ef3486d2",
+  measurementId: "G-CR26DELB1Y"
 };
+
 const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
+const db = getFirestore(app);
+
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.log(err));
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.js')
@@ -35,10 +38,10 @@ if ('serviceWorker' in navigator) {
     });
 }
 
+// Función para obtener el token de notificación sin VAPID
 async function obtenerTokenDeNotificacion(serviceWorkerRegistration: ServiceWorkerRegistration) {
   try {
     const token = await getToken(messaging, {
-      vapidKey: 'TU_VAPID_KEY', // Reemplaza con tu clave pública VAPID
       serviceWorkerRegistration
     });
     console.log('Token obtenido:', token);
@@ -46,3 +49,4 @@ async function obtenerTokenDeNotificacion(serviceWorkerRegistration: ServiceWork
     console.error('Error al obtener el token de notificación:', error);
   }
 }
+
