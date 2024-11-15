@@ -1,52 +1,18 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
-import { getMessaging, getToken } from 'firebase/messaging';
-import { initializeApp } from 'firebase/app';
-import { getFirestore, doc, setDoc } from "firebase/firestore";
-
-// Inicializa Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyBWsVqfO9xSTog_eiBhJthA2A5HL3mpuYk",
-  authDomain: "instrumaster-2c4e6.firebaseapp.com",
-  projectId: "instrumaster-2c4e6",
-  storageBucket: "instrumaster-2c4e6.appspot.com",
-  messagingSenderId: "911820236695",
-  appId: "1:911820236695:web:7bc98b50863e38ef3486d2",
-  measurementId: "G-CR26DELB1Y"
-};
-
-const app = initializeApp(firebaseConfig);
-const messaging = getMessaging(app);
-const db = getFirestore(app);
 
 platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.log(err));
+  .catch(err => console.error(err));
 
+// Registrar el Service Worker
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js')
-    .then(async (registration) => {
-      console.log('Service Worker registrado:', registration.scope);
-
-      // Asegura que el Service Worker esté activo y listo
-      const readyRegistration = await navigator.serviceWorker.ready;
-      if (readyRegistration) {
-        await obtenerTokenDeNotificacion(readyRegistration);
-      }
-    })
-    .catch((error) => {
-      console.log('Error al registrar el Service Worker:', error);
-    });
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then((registration) => {
+        console.log('Service Worker registrado con éxito en el scope:', registration.scope);
+      })
+      .catch((error) => {
+        console.error('Error al registrar el Service Worker:', error);
+      });
+  });
 }
-
-// Función para obtener el token de notificación sin VAPID
-async function obtenerTokenDeNotificacion(serviceWorkerRegistration: ServiceWorkerRegistration) {
-  try {
-    const token = await getToken(messaging, {
-      serviceWorkerRegistration
-    });
-    console.log('Token obtenido:', token);
-  } catch (error) {
-    console.error('Error al obtener el token de notificación:', error);
-  }
-}
-

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import Swal from 'sweetalert2';
+import { MessagingService } from '../services/messaging.service';
 
 @Component({
   selector: 'app-tab3',
@@ -16,7 +16,7 @@ export class Tab3Page {
   fileName: string = ''; // Nombre de la canción
   selectedFileName: string = ''; // Para mostrar el nombre del archivo seleccionado
 
-  constructor(private storage: AngularFireStorage) {}
+  constructor(private storage: AngularFireStorage, private messagingService:MessagingService) {}
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
@@ -26,10 +26,15 @@ export class Tab3Page {
     }
   }
 
+  sendNotification() {
+    this.messagingService.sendTestNotification();
+  }
+
   onUploadFile() {
     if (this.selectedFile) {
       if (this.fileName.trim()) {
         this.uploadFile(this.selectedFile, this.fileName);
+        this.sendNotification();
       } else {
         console.log('Please enter a file name');
       }

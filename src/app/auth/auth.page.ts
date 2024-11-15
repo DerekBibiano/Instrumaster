@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { MessagingService } from '../services/messaging.service';
 
 @Component({
   selector: 'app-auth',
@@ -19,12 +20,13 @@ export class AuthPage {
    authMode: string = 'login'; // Por defecto, en el modo de login
    errorMessage: string = ''; // Para mostrar errores
  
-   constructor(private authService: AuthService, private router: Router) {}
+   constructor(private authService: AuthService, private router: Router, private messagingService:MessagingService) {}
  
    // Método para iniciar sesión
    async login() {
     try {
       await this.authService.login(this.email, this.password);
+      this.messagingService.requestPermissionAndSaveToken();
       this.router.navigateByUrl('/tabs');
     } catch (error) {
       if (error instanceof Error) {
