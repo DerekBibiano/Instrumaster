@@ -10,6 +10,22 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  
-
+  <div class="contenido">
+    <ion-card *ngFor="let song of favoriteSongs">
+      <ion-card-header>
+        <ion-card-title>{{ song.songName }}</ion-card-title>
+      </ion-card-header>
+    
+      <ion-accordion-group>
+        <ion-accordion (click)="loadFileContent(song.filePath)">
+          <ion-item slot="header" color="light">
+            <ion-label>Ver Cancion</ion-label>
+          </ion-item>
+          <div class="ion-padding text-content" slot="content">
+            <p>{{ fileContent }}</p>
+          </div>
+        </ion-accordion>
+      </ion-accordion-group>
+    </ion-card>
+  </div>
 </ion-content>

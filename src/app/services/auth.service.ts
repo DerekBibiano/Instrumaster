@@ -34,5 +34,9 @@ export class AuthService {
       throw error;
     }
   }
+  
+  getUser(): Observable<any> {
+    return this.afAuth.authState;
+  }
 
 }

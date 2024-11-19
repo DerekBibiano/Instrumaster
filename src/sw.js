@@ -4,7 +4,6 @@ const CACHE_NAME = 'instrumaster-cache-v1';
 // Archivos a cachear
 const FILES_TO_CACHE = [
   '/',
-  '/index.html',
   '/firebase-messaging-sw.js'  // Asegúrate de que este archivo esté presente
 ];
 
@@ -13,11 +12,11 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll(FILES_TO_CACHE);
-    }).catch(error => {
-      console.error('Falló la caché en la instalación:', error);
+    }).catch((error) => {
+      console.error('Error al agregar archivos al caché:', error);
     })
   );
-  self.skipWaiting(); // Activa inmediatamente el Service Worker después de la instalación
+  self.skipWaiting();
 });
 
 // Evento de activación del Service Worker
