@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>
       Repertorio
@@ -26,6 +26,10 @@
           </div>
         </ion-accordion>
       </ion-accordion-group>
+      <ion-button color="danger" fill="clear" (click)="removeFromFavorites(song.songName)">
+        Eliminar de Favoritos
+        <ion-icon slot="end" name="trash-outline"></ion-icon> 
+      </ion-button>      
     </ion-card>
   </div>
 </ion-content>

@@ -4,7 +4,7 @@ const CACHE_NAME = 'instrumaster-cache-v1';
 // Archivos a cachear
 const FILES_TO_CACHE = [
   '/',
-  '/firebase-messaging-sw.js'  // Asegúrate de que este archivo esté presente
+  'ngsw.json'  // Asegúrate de que este archivo esté presente
 ];
 
 // Evento de instalación del Service Worker

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FavoritesService } from '../services/favorites.service';
 import { FileService } from '../services/file-service.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -16,6 +17,7 @@ export class Tab1Page implements OnInit{
     private favoritesService: FavoritesService, 
     private authService: AuthService, 
     private router: Router, 
+    private toastController:ToastController,
     private firestore : AngularFirestore,
     private fileService : FileService  
   ) {}
@@ -32,6 +34,14 @@ export class Tab1Page implements OnInit{
         this.loadFavorites();
       }
     });
+  }
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000,
+      position: 'top',
+    });
+    await toast.present();
   }
 
   loadFavorites() {
@@ -54,6 +64,19 @@ export class Tab1Page implements OnInit{
       this.router.navigateByUrl('/auth');
     } catch (err) {
       console.log(err);
+    }
+  }
+
+  async removeFromFavorites(songName: string) {
+    if (!this.userId) return;
+
+    try {
+      await this.favoritesService.removeFromFavorites(this.userId, songName);
+      this.presentToast('Canción eliminada de favoritos.');
+      this.loadFavorites(); // Recargar la lista de favoritos
+    } catch (error) {
+      console.error('Error al eliminar de favoritos:', error);
+      this.presentToast('Error al eliminar la canción de favoritos.');
     }
   }
 }

@@ -44,6 +44,11 @@
                 "output": "./svg"
               },
               {
+                "glob": "trash-outline.svg",
+                "input": "node_modules/ionicons/dist/ionicons/svg",
+                "output": "./svg"
+              },
+              {
                 "glob": "logo-youtube.svg",
                 "input": "node_modules/ionicons/dist/ionicons/svg",
                 "output": "./svg"
