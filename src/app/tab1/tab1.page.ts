@@ -5,6 +5,8 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FavoritesService } from '../services/favorites.service';
 import { FileService } from '../services/file-service.service';
 import { ToastController } from '@ionic/angular';
+import { MessagingService } from '../services/messaging.service';
+import { Capacitor } from '@capacitor/core';
 
 @Component({
   selector: 'app-tab1',
@@ -18,9 +20,17 @@ export class Tab1Page implements OnInit{
     private authService: AuthService, 
     private router: Router, 
     private toastController:ToastController,
+    private messagingService : MessagingService,
     private firestore : AngularFirestore,
     private fileService : FileService  
-  ) {}
+  ) {
+    this.init()
+  }
+  init(){
+    if(Capacitor.isNativePlatform()){
+      this.messagingService.init();
+    }
+  }
   
   favoriteSongs: { songName: string; filePath: string }[] = [];
   fileContent: string = '';
