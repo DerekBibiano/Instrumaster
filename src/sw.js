@@ -3,14 +3,14 @@ const CACHE_NAME = 'instrumaster-cache-v1';
 
 // Archivos a cachear
 const FILES_TO_CACHE = [
-  '/',
-  'ngsw.json'  // Asegúrate de que este archivo esté presente
+ '/'
 ];
 
 // Evento de instalación del Service Worker
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
+      console.log("se registro el cache bien");
       return cache.addAll(FILES_TO_CACHE);
     }).catch((error) => {
       console.error('Error al agregar archivos al caché:', error);
