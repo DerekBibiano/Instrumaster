@@ -8,10 +8,15 @@ ion-content {
 ion-card {
     position: relative;
     width: 80%;
-    height: 70%;
-    margin: auto;
     margin-top: 20%;
-}
+    border-radius: 30px;
+    height: auto; /* Permite que la altura sea dinámica según el contenido */
+    margin: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column; /* Alineación vertical de los hijos */
+    justify-content: center; /* Centra el contenido verticalmente */
+  }
 
 ion-card-content{
     display: flex;
@@ -20,6 +25,7 @@ ion-card-content{
     justify-content: center; /* Centra el contenido verticalmente */
     height: 100%;
     padding-bottom: 80px; /* Deja espacio para los botones */
+
 }  
 
 ion-input{
@@ -61,3 +67,10 @@ ion-input{
     color: #666;
   }
   
+  .center-content {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;     /* Centra verticalmente */
+    width: 100%;             /* Asegura que ocupe todo el ancho */
+    height: 100%;        
+  }

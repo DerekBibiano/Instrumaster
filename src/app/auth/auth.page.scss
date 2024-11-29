@@ -1,45 +1,65 @@
 ion-content {
+    background-image: url(../../assets/icon/backimage.jpg);
+    
     display: flex;
     justify-content: center; /* Centra horizontalmente */
     align-items: center;     /* Centra verticalmente */
-    height: 100vh;           /* Asegura que ocupe toda la altura de la ventana */
+    height: 100vh;           /* Ocupa toda la altura de la ventana */
+    padding: 0;              /* Asegura que no haya relleno extra */
 }
 
 ion-card {
-    position: relative;
+    border-radius: 30px;
     width: 80%;
-    height: 70%;
+    height: auto; /* Permite que la altura sea dinámica según el contenido */
     margin: auto;
-    padding-bottom: 60px;
-}
-
-ion-card-content{
+    padding: 16px;
     display: flex;
-    flex-direction: column;
-    align-items: center; /* Centra el contenido del formulario horizontalmente */
+    flex-direction: column; /* Alineación vertical de los hijos */
     justify-content: center; /* Centra el contenido verticalmente */
-    height: 100%;
-    padding-bottom: 80px; /* Deja espacio para los botones */
-}  
-
-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
-.center-content {
+ion-card-header {
+    display: flex;
+    flex-direction: column; /* Alinea elementos en columna */
+    justify-content: center; /* Centra verticalmente */
+    align-items: center;     /* Centra horizontalmente */
+    text-align: center;      /* Asegura que el texto esté centrado */
+    padding: 16px 0;         /* Ajusta el relleno del header */
+}
+
+img{
+    height: 75px;
+    width: 150px;
+    margin-top: 20%; /* Elimina márgenes extra */
+    line-height: 1.2; /* Ajusta la altura de línea */
+}
+
+ion-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente */
+    justify-content: center; /* Centra verticalmente */
+    height: auto; /* Permite altura dinámica */
+    padding: 16px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente */
+    width: 100%; /* Ajusta el formulario al ancho del contenedor */
+}
+
+.footer {
+    margin-top: 16px; /* Agrega separación del formulario */
+    display: flex;
+    justify-content: center; /* Centra el botón horizontalmente */
+}
+
+  .center-content {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-  }
-
-  .footer{
-    position: absolute;
-    bottom: 50px; /* Espacio desde el fondo */
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
   }

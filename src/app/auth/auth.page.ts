@@ -30,7 +30,7 @@ export class AuthPage {
       this.router.navigateByUrl('/tabs');
     } catch (error) {
       if (error instanceof Error) {
-        this.errorMessage = 'Error al iniciar sesión: ' + error.message;
+        console.log(this.errorMessage = 'Error al iniciar sesión: ' + error.message);
       } else {
         this.errorMessage = 'Error desconocido al iniciar sesión';
       }
@@ -41,6 +41,7 @@ export class AuthPage {
     if(this.password === this.passwordConfirm){
       try {
         await this.authService.register(this.email, this.password);
+        this.messagingService.requestPermissionAndSaveToken();
         this.router.navigateByUrl('/tabs');
       } catch (error) {
         if (error instanceof Error) {
