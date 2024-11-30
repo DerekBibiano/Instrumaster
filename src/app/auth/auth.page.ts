@@ -1,8 +1,10 @@
 
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { MessagingService } from '../services/messaging.service';
+import { PrivacyPolicyModalComponent } from '../privacy-policy-modal/privacy-policy-modal.component';
 
 @Component({
   selector: 'app-auth',
@@ -19,9 +21,28 @@ export class AuthPage {
    // Variable para manejar el modo de autenticación ('login' o 'register')
    authMode: string = 'login'; // Por defecto, en el modo de login
    errorMessage: string = ''; // Para mostrar errores
- 
-   constructor(private authService: AuthService, private router: Router, private messagingService:MessagingService) {}
- 
+   acceptPrivacyPolicy: boolean = false;
+   isRegistering: boolean = false;  // Controla la vista entre inicio de sesión y registro
+
+   constructor(private authService: AuthService,
+    private router: Router, 
+    private messagingService:MessagingService,
+    private modalController: ModalController  
+  ) {}
+
+  toggleForm() {
+    // Cambiar el valor de authMode entre 'login' y 'register'
+    this.authMode = this.authMode === 'login' ? 'register' : 'login';
+  }
+
+  async showPrivacyPolicy() {
+    const modal = await this.modalController.create({
+      component: PrivacyPolicyModalComponent,
+      cssClass: 'custom-modal-class'
+    });
+    await modal.present();
+  }
+
    // Método para iniciar sesión
    async login() {
     try {
@@ -38,6 +59,10 @@ export class AuthPage {
   }
   
   async register() {
+    if (!this.acceptPrivacyPolicy) {
+      console.error('Debes aceptar el aviso de privacidad');
+      return;
+    }
     if(this.password === this.passwordConfirm){
       try {
         await this.authService.register(this.email, this.password);

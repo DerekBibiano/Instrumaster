@@ -8,6 +8,13 @@ ion-content {
     padding: 0;              /* Asegura que no haya relleno extra */
 }
 
+.link {
+    color: var(--ion-color-primary);
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+
 ion-card {
     border-radius: 30px;
     width: 80%;

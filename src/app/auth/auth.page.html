@@ -16,17 +16,14 @@
       </ion-card-header>
 
         <ion-card-content>
-
-          
-
           <!-- Formulario de Login -->
           <form *ngIf="authMode === 'login'" (submit)="login()">
             <ion-list>
-              <ion-item>
+              <ion-item lines="none">
                 <ion-label position="floating">Email</ion-label>
                 <ion-input [(ngModel)]="email" color="primary" type="email" name="email" required></ion-input>
               </ion-item>
-              <ion-item>
+              <ion-item lines="none">
                 <ion-label position="floating">Contraseña</ion-label>
                 <ion-input [(ngModel)]="password" color="primary" type="password" name="password" required></ion-input>
               </ion-item>
@@ -39,15 +36,15 @@
             <!-- Formulario de Registro -->
           <form *ngIf="authMode === 'register'" (submit)="register()">
             <ion-list>
-              <ion-item>
+              <ion-item lines="none">
                 <ion-label position="floating">Email</ion-label>
                 <ion-input [(ngModel)]="email" color="primary" type="email" name="email" required></ion-input>
               </ion-item>
-              <ion-item>
+              <ion-item lines="none">
                 <ion-label position="floating">Crear nueva contraseña</ion-label>
                 <ion-input [(ngModel)]="password" color="primary" type="password" name="password" required></ion-input>
-              </ion-item>
-              <ion-item>
+              </ion-item >
+              <ion-item lines="none">
                 <ion-label position="floating">Confirmar contraseña</ion-label>
                 <ion-input [(ngModel)]="passwordConfirm" color="primary" type="password" name="password" required></ion-input>
               </ion-item>
@@ -55,10 +52,15 @@
             <div class="footer">
               <ion-button type="submit">Registrarse con correo</ion-button>
             </div>
-          </form>
-
+            <ion-item lines="none" >
+              <ion-checkbox style="padding-right:20px" [(ngModel)]="acceptPrivacyPolicy" name="acceptPrivacyPolicy" required></ion-checkbox>
+              <ion-label>
+                Ya leí el 
+                <span class="link" (click)="showPrivacyPolicy()">Aviso de Privacidad</span>.
+              </ion-label>
+            </ion-item>
+          </form>          
         </ion-card-content>
-
     </ion-card>
   </ion-grid>
 </ion-content>
